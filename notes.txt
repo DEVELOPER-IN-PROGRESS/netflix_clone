@@ -1,0 +1,1 @@
+a _document.js must be created under pages/api/ directory to override the default styles 
