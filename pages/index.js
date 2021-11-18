@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
+
 import Banner from '../components/banner/Banner'
+import NavBar from '../components/nav/navbar'
+
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -22,9 +25,11 @@ export default function Home() {
            subTitle="The god of mischief returns"
             imgUrl="./static/lok.jpg"/>
 
-        {/* <NavBar />
+         <NavBar 
+           username ="Alex"
+          />
 
-        <Card /> */}
+        {/* <Card />  */}
 
 
       
