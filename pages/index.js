@@ -2,7 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import Banner from '../components/banner/Banner'
+import Card from '../components/card/card'
 import NavBar from '../components/nav/navbar'
+
 
 import styles from '../styles/Home.module.css'
 
@@ -29,10 +31,20 @@ export default function Home() {
            username ="Alex"
           />
 
-        {/* <Card />  */}
+         <Card 
+            imgUrl='/static/mobius.jpg'
+            size='large'
+          /> 
 
+          <Card 
+            imgUrl='/static/mobius.jpg'
+            size='medium'
+          /> 
 
-      
+          <Card 
+            imgUrl='/static/mobius.jpg'
+            size='small'
+          /> 
     </div>
   )
 }
