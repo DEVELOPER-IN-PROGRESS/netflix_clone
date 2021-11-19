@@ -4,11 +4,19 @@ import Image from 'next/image'
 import Banner from '../components/banner/Banner'
 import Card from '../components/card/card'
 import NavBar from '../components/nav/navbar'
-
+import Cardwrap from '../components/cardwrap/Cardwrap';
 
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+ const videos = [
+   {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
+   {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
+   {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
+   {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
+   {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
+ ]
+
   return (
     <div className={styles.container}>
       <Head>
@@ -31,15 +39,18 @@ export default function Home() {
            username ="Alex"
           />
 
+          <div className={styles.sectionWrapper}>
+            <Cardwrap title="Disney + "  videos={videos} size="large"/>
+
+            <Cardwrap title="Productivity"  videos={videos} size="medium"/>
+          </div>
+
          <Card 
             imgUrl='/static/mobius.jpg'
             size='large'
           /> 
 
-          <Card 
-            imgUrl='/static/mobius.jpg'
-            size='medium'
-          /> 
+          
 
           <Card 
             size='small'

@@ -3,3 +3,4 @@ a _document.js must be created under pages/api/ directory to override the defaul
 google font icon for arrow 
 evnthough there is file based routing system in next there is a userouter hook which can take you from one page to another w
 without refreshing the entire page 
+#Framer library for animation  which is built on top of react
