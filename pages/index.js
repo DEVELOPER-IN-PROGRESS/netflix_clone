@@ -42,7 +42,6 @@ export default function Home() {
           /> 
 
           <Card 
-            imgUrl='/static/mobius.jpg'
             size='small'
           /> 
     </div>
