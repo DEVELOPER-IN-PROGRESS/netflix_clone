@@ -5,11 +5,18 @@ import Banner from '../components/banner/Banner'
 import Card from '../components/card/card'
 import NavBar from '../components/nav/navbar'
 import Cardwrap from '../components/cardwrap/Cardwrap';
+import { getVideos } from '../lib/video'
 
 import styles from '../styles/Home.module.css'
 
+
 export default function Home() {
- const videos = [
+
+  const ytvideos = getVideos();
+
+  console.log({ytvideos});
+
+ const vsample = [
    {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
    {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
    {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
@@ -40,9 +47,9 @@ export default function Home() {
           />
 
           <div className={styles.sectionWrapper}>
-            <Cardwrap title="Disney + "  videos={videos} size="large"/>
+            <Cardwrap title="Disney + "  videos={vsample} size="large"/>
 
-            <Cardwrap title="Productivity"  videos={videos} size="medium"/>
+            <Cardwrap title="Productivity"  videos={ytvideos} size="medium"/>
           </div>
 
          <Card 
