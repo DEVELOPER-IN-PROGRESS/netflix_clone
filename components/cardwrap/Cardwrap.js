@@ -3,7 +3,7 @@ import Card from "../card/card";
 import styles from './Cardwrap.module.css'
 
 const Cardwrap = (props) => {
-    const { title , videos , size } = props ; 
+    const { title , videos = [] , size } = props ; 
     console.log({videos});
  return(<section className={styles.container}>
      <h2 className={styles.title}>{title}</h2>
@@ -13,6 +13,7 @@ const Cardwrap = (props) => {
             return ( <Card 
             imgUrl={vd.imgUrl}
             size={size}
+            key={id}
             id={id}
             />) 
            } ) }

@@ -9,10 +9,19 @@ import { getVideos } from '../lib/video'
 
 import styles from '../styles/Home.module.css'
 
+export async function getServerSideProps(){
+  const ytvideos = await  getVideos('disney trailer');
 
-export default function Home() {
+  const Productivity = await  getVideos('Productivity');
 
-  const ytvideos = getVideos();
+  const Travel = await  getVideos('Travel');
+
+  return { props : { ytvideos , Travel ,Productivity }}
+}
+
+export default function Home({ytvideos , Travel ,Productivity }) {
+
+  
 
   console.log({ytvideos});
 
@@ -49,7 +58,12 @@ export default function Home() {
           <div className={styles.sectionWrapper}>
             <Cardwrap title="Disney + "  videos={vsample} size="large"/>
 
-            <Cardwrap title="Productivity"  videos={ytvideos} size="medium"/>
+            <Cardwrap title="Productivity"  videos={Productivity} size="medium"/>
+
+            <Cardwrap title="Travel"  videos={Travel} size="small"/>
+
+            <Cardwrap title="Popular"  videos={ytvideos} size="large"/>
+
           </div>
 
          <Card 
