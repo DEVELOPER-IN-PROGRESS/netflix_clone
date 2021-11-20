@@ -5,3 +5,5 @@ evnthough there is file based routing system in next there is a userouter hook w
 without refreshing the entire page 
 #Framer library for animation  which is built on top of react
 useRouter for route within a page 
+
+useEffect ??

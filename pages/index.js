@@ -5,7 +5,7 @@ import Banner from '../components/banner/Banner'
  import NavBar from '../components/nav/navbar'
 import Cardwrap from '../components/cardwrap/Cardwrap';
 import { getPopularVideos, getVideos } from '../lib/video'
-import  magic  from "../lib/magic-client";
+
 
 import styles from '../styles/Home.module.css'
 
@@ -46,7 +46,7 @@ export default function Home({ytvideos , Travel ,Productivity , Popular}) {
 
       <div className={styles.main}>
         <NavBar 
-           username ="Alex"
+           
           /> 
 
         <Banner 

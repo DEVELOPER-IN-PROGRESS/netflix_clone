@@ -7,15 +7,32 @@ import Image from "next/image";
 import styles from "../styles/Login.module.css";
 import { magic } from "../lib/magic-client";
 
-const Login = (props) => {
+const Login = () => {
 
     const router = useRouter(); 
-    const { isLoading } = props ; 
+
+    const [isLoading , setIsLoading] = useState(false);
     const [email ,setEmail] = useState('');
     const [userMsg , setUserMsg] =  useState('');
     
+    useEffect( () =>{
+        const handleComplete = () => {
+            setIsLoading(false);
+        }
+
+        router.events.on('routeChangeComplete' , handleComplete) ;
+        router.events.on('routeChangeError' , handleComplete) ;
+
+        return() =>{
+            router.events.off('routeChangeComplete' , handleComplete);
+            router.events.off('routeChangeError' , handleComplete) ;
+        }
+    },[router])
+
+
     const handleOnChangeEmail = (e) => {
         setUserMsg('') ;
+        
         const email = e.target.value ; 
 
          setEmail(email);
@@ -31,18 +48,24 @@ const Login = (props) => {
             if (email === process.env.NEXT_PUBLIC_EMAIL ){
                 
                 try {
-                  const token =    await magic.auth.loginWithMagicLink({ email});
-                  console.log({token})
+                    setIsLoading(true) ; 
+                  const token =    await magic.auth.loginWithMagicLink({ email , showUI:true });
+                   if(token){
+                       console.log({token})
+                    router.push('/')
+                   }
                   } catch(error) {
                     // Handle errors if required!
                     console.error(error);
                   }
 
-               router.push('/')
+              
             }else {
+                setIsLoading(false);
                 setUserMsg('Something went wrong ') ;    
             }
         }else {
+            setIsLoading(false);
             setUserMsg('Enter a valid Email address') ; 
         }
 
