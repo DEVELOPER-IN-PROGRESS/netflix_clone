@@ -5,7 +5,7 @@ import Banner from '../components/banner/Banner'
 import Card from '../components/card/card'
 import NavBar from '../components/nav/navbar'
 import Cardwrap from '../components/cardwrap/Cardwrap';
-import { getVideos } from '../lib/video'
+import { getPopularVideos, getVideos } from '../lib/video'
 
 import styles from '../styles/Home.module.css'
 
@@ -16,10 +16,12 @@ export async function getServerSideProps(){
 
   const Travel = await  getVideos('Travel');
 
-  return { props : { ytvideos , Travel ,Productivity }}
+  const Popular = await  getPopularVideos();
+
+  return { props : { ytvideos , Travel ,Productivity , Popular}}
 }
 
-export default function Home({ytvideos , Travel ,Productivity }) {
+export default function Home({ytvideos , Travel ,Productivity , Popular }) {
 
   
 
@@ -46,36 +48,30 @@ export default function Home({ytvideos , Travel ,Productivity }) {
           NextFlix
         </h1>
 
+      <div className={styles.main}>
+        <NavBar 
+           username ="Alex"
+          /> 
+
         <Banner 
            title="Loki "
            subTitle="The god of mischief returns"
             imgUrl="./static/lok.jpg"/>
 
-         <NavBar 
-           username ="Alex"
-          />
+         
 
-          <div className={styles.sectionWrapper}>
+        <div className={styles.sectionWrapper}>
             <Cardwrap title="Disney + "  videos={vsample} size="large"/>
 
             <Cardwrap title="Productivity"  videos={Productivity} size="medium"/>
 
             <Cardwrap title="Travel"  videos={Travel} size="small"/>
 
-            <Cardwrap title="Popular"  videos={ytvideos} size="large"/>
+            <Cardwrap title="Popular"  videos={Popular} size="large"/>
 
-          </div>
-
-         <Card 
-            imgUrl='/static/mobius.jpg'
-            size='large'
-          /> 
-
-          
-
-          <Card 
-            size='small'
-          /> 
-    </div>
+        </div>
+      </div> 
+         
+   </div>
   )
 }
