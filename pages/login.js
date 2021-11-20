@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
 
@@ -8,15 +8,38 @@ import styles from "../styles/Login.module.css";
 
 const Login = (props) => {
 
-    const handleOnChangeEmail = () => {
+    const router = useRouter(); 
+    const { isLoading } = props ; 
+    const [email ,setEmail] = useState('');
+    const [userMsg , setUserMsg] =  useState('');
+    
+    const handleOnChangeEmail = (e) => {
+        setUserMsg('') ;
+        const email = e.target.value ; 
 
+         setEmail(email);
+        console.log(email);
+        
     }
 
-    const handleLoginWithEmail = () => {
+    const handleLoginWithEmail = (e) => {
+        e.preventDefault(); 
+        console.log("email" ,   process.env.NEXT_PUBLIC_EMAIL )
 
+        if(email){
+            if (email === process.env.NEXT_PUBLIC_EMAIL ){
+               router.push('/')
+            }else {
+                setUserMsg('Something went wrong ') ;    
+            }
+        }else {
+            setUserMsg('Enter a valid Email address') ; 
+        }
+
+        
     }
 
-    const { isLoading , userMsg} = props ; 
+    
 
     return (
         <div className={styles.container}>
