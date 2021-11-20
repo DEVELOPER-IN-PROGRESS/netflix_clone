@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
-import router, { useRouter } from "next/router";
+import  { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
-
+ 
 import styles from "../styles/Login.module.css";
+import { magic } from "../lib/magic-client";
 
 const Login = (props) => {
 
@@ -22,12 +23,21 @@ const Login = (props) => {
         
     }
 
-    const handleLoginWithEmail = (e) => {
+    const handleLoginWithEmail = async (e) => {
         e.preventDefault(); 
         console.log("email" ,   process.env.NEXT_PUBLIC_EMAIL )
 
         if(email){
             if (email === process.env.NEXT_PUBLIC_EMAIL ){
+                
+                try {
+                  const token =    await magic.auth.loginWithMagicLink({ email});
+                  console.log({token})
+                  } catch(error) {
+                    // Handle errors if required!
+                    console.error(error);
+                  }
+
                router.push('/')
             }else {
                 setUserMsg('Something went wrong ') ;    
