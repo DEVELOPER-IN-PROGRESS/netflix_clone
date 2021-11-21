@@ -39,11 +39,6 @@ export default function Home({ytvideos , Travel ,Productivity , Popular}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-     
-        <h1 className={styles.title}>
-          NextFlix
-        </h1>
-
       <div className={styles.main}>
         <NavBar 
            
