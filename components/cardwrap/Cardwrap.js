@@ -1,4 +1,5 @@
 import Card from "../card/card";
+import Link from 'next/link' ; 
 
 import styles from './Cardwrap.module.css'
 
@@ -10,12 +11,19 @@ const Cardwrap = (props) => {
      <div className={styles.cardWrapper}>
           { 
            videos.map( (vd, id) => {
-            return ( <Card 
-            imgUrl={vd.imgUrl}
-            size={size}
-            key={id}
-            id={id}
-            />) 
+               console.log({vd}) ; 
+            return ( 
+             <Link href={`/video/${vd.id}`} passHref> 
+               <a href={`/video/${vd.id}`}>
+                <Card 
+                imgUrl={vd.imgUrl}
+                size={size}
+                key={vd.id}
+                id={id}
+                />
+                </a>   
+             </Link>  
+            ) 
            } ) }
     
 

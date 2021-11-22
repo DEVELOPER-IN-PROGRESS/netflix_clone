@@ -6,9 +6,8 @@ import Banner from '../components/banner/Banner'
 import Cardwrap from '../components/cardwrap/Cardwrap';
 import { getPopularVideos, getVideos } from '../lib/video'
 
-
 import styles from '../styles/Home.module.css'
-
+ 
 export async function getServerSideProps(){
   const ytvideos = await  getVideos('disney trailer');
 
@@ -22,6 +21,7 @@ export async function getServerSideProps(){
 }
 
 export default function Home({ytvideos , Travel ,Productivity , Popular}) {
+ 
 
  const vsample = [
    {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
@@ -45,6 +45,7 @@ export default function Home({ytvideos , Travel ,Productivity , Popular}) {
           /> 
 
         <Banner 
+           videoId="4zH5iYM4wJo"
            title="Loki "
            subTitle="The god of mischief returns"
             imgUrl="./static/lok.jpg"/>
