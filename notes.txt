@@ -9,3 +9,5 @@ useRouter for route within a page
 useEffect ??
 react-modal .
 as per the docs of react-modal we need to set it to element with  main root id which in case of [video].js is  __next
+
+css-modules : composes (check github repo)
