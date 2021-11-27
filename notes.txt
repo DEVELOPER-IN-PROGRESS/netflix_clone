@@ -11,3 +11,5 @@ react-modal .
 as per the docs of react-modal we need to set it to element with  main root id which in case of [video].js is  __next
 
 css-modules : composes (check github repo)
+
+read ISR Docs from NEXT revalidate

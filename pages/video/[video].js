@@ -5,17 +5,40 @@ import styles from '../../styles/Video.module.css'
 
 Modal.setAppElement('#__next');
 
-const Video = ({}) => {
+
+export async function getStaticPaths(){
+  const listOfVideos = ['vXzuFprlyrw' ,'rt-2cxAiPJk' ,  '5VYb3B1ETlk' , 'ChOhcHD8fBA' , 'x9D0uUKJ5KI' ] ;
+
+  const paths = listOfVideos.map((video) => ({
+    params: { video },
+  }));
+
+  console.log({paths})
+
+  return { paths, fallback: "blocking" }; 
+}
+
+export async function getStaticProps() {
+
+  const video =  {
+    title: 'White Wolf',
+    publishTime:'december-16-1991',
+    description: 'Just some few random description .and how random can it get? Just some few random description .and how random can it get?Just some few random description .and how random can it get?Just some few random description .',
+    channelTitle:'Sokovian Diaries',
+    viewCount: 10000 ,
+  } ;
+
+  return { 
+    props:{ 
+      video , 
+    } ,
+    revalidate : 10  , // as in 10 seconds 
+  } ; 
+
+}
+
+const Video = ({video}) => {
     const router = useRouter();
-
-    const video =  {
-      title: 'White Wolf',
-      publishTime:'december-16-1991',
-      description: 'Just some few random description',
-      channelTitle:'Sokovian Diaries',
-      viewCount: 10000 ,
-    } ;
-
 
      const { title , publishTime , description , channelTitle , viewCount } = video ; 
 
