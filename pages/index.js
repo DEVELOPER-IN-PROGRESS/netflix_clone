@@ -9,6 +9,8 @@ import { getPopularVideos, getVideos } from '../lib/video'
 import styles from '../styles/Home.module.css'
  
 export async function getServerSideProps(){
+  
+
   const ytvideos = await  getVideos('disney trailer');
 
   const Productivity = await  getVideos('Productivity');

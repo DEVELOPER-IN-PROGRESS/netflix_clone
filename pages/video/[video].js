@@ -20,7 +20,7 @@ export async function getStaticPaths(){
   return { paths, fallback: "blocking" }; 
 }
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
 
   // const video =  {
   //   title: 'White Wolf',
@@ -30,7 +30,10 @@ export async function getStaticProps() {
   //   viewCount: 10000 ,
   // } ;
 
-  const videoID = '4zH5iYM4wJo'
+  console.log("context" , context )
+
+
+  const videoID = context.params.video; 
   const videoArray = await getYoutubeVideoById(videoID);
 
   return { 
@@ -45,7 +48,7 @@ export async function getStaticProps() {
 const Video = ({video}) => {
     const router = useRouter();
 
-     const { title , publishTime , description , channelTitle , statistics: { viewCount } } = video ; 
+     const { title , publishTime , description , channelTitle , statistics: { viewCount } = { viewCount : 0 } } = video ; 
 
     return ( 
           <div className={styles.container}>
@@ -57,7 +60,7 @@ const Video = ({video}) => {
               className={styles.modal}
               overlayClassName={styles.overlay}
              > 
-             <div>Modal body</div>
+            
              <iframe
                 id="ytplayer"
                 className={styles.videoPlayer}
