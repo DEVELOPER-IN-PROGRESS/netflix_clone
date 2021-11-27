@@ -3,6 +3,8 @@ import clsx from "clsx";
 import Modal from "react-modal";
 import styles from '../../styles/Video.module.css'
 
+import { getYoutubeVideoById } from "../../lib/video";
+
 Modal.setAppElement('#__next');
 
 
@@ -20,17 +22,20 @@ export async function getStaticPaths(){
 
 export async function getStaticProps() {
 
-  const video =  {
-    title: 'White Wolf',
-    publishTime:'december-16-1991',
-    description: 'Just some few random description .and how random can it get? Just some few random description .and how random can it get?Just some few random description .and how random can it get?Just some few random description .',
-    channelTitle:'Sokovian Diaries',
-    viewCount: 10000 ,
-  } ;
+  // const video =  {
+  //   title: 'White Wolf',
+  //   publishTime:'december-16-1991',
+  //   description: 'Just some few random description .and how random can it get? Just some few random description .and how random can it get?Just some few random description .and how random can it get?Just some few random description .',
+  //   channelTitle:'Sokovian Diaries',
+  //   viewCount: 10000 ,
+  // } ;
+
+  const videoID = '4zH5iYM4wJo'
+  const videoArray = await getYoutubeVideoById(videoID);
 
   return { 
     props:{ 
-      video , 
+      video: videoArray.length > 0 ? videoArray[0] : {}  , 
     } ,
     revalidate : 10  , // as in 10 seconds 
   } ; 
@@ -40,7 +45,7 @@ export async function getStaticProps() {
 const Video = ({video}) => {
     const router = useRouter();
 
-     const { title , publishTime , description , channelTitle , viewCount } = video ; 
+     const { title , publishTime , description , channelTitle , statistics: { viewCount } } = video ; 
 
     return ( 
           <div className={styles.container}>
