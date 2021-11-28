@@ -13,3 +13,5 @@ as per the docs of react-modal we need to set it to element with  main root id w
 css-modules : composes (check github repo)
 
 read ISR Docs from NEXT revalidate
+
+Hasura DB for GraphQL

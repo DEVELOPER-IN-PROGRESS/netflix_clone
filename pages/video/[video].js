@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import NavBar from "../../components/nav/navbar";
 import clsx from "clsx";
 import Modal from "react-modal";
 import styles from '../../styles/Video.module.css'
@@ -21,15 +22,6 @@ export async function getStaticPaths(){
 }
 
 export async function getStaticProps(context) {
-
-  // const video =  {
-  //   title: 'White Wolf',
-  //   publishTime:'december-16-1991',
-  //   description: 'Just some few random description .and how random can it get? Just some few random description .and how random can it get?Just some few random description .and how random can it get?Just some few random description .',
-  //   channelTitle:'Sokovian Diaries',
-  //   viewCount: 10000 ,
-  // } ;
-
   console.log("context" , context )
 
 
@@ -52,7 +44,7 @@ const Video = ({video}) => {
 
     return ( 
           <div className={styles.container}>
-            Video Page {router.query.video}
+            <NavBar />
             <Modal
               isOpen={true}
               contentLabel="Watch the video"
