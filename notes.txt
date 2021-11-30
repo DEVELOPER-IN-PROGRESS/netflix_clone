@@ -19,3 +19,5 @@ Hasura DB for GraphQL
 custom permissions in hasura  so that a user cannot access other users information 
 In the Hasura DB there is a public graphQl endpoint where there are admin and user roles . If there is no admin-secret id passed
 along in the header there should be some unnique key to identify each user which brings us to JWT  token authentication 
+
+we need to generate jwt tokens in place rather than using a website so we need to install a npm package
