@@ -15,3 +15,7 @@ css-modules : composes (check github repo)
 read ISR Docs from NEXT revalidate
 
 Hasura DB for GraphQL
+
+custom permissions in hasura  so that a user cannot access other users information 
+In the Hasura DB there is a public graphQl endpoint where there are admin and user roles . If there is no admin-secret id passed
+along in the header there should be some unnique key to identify each user which brings us to JWT  token authentication 

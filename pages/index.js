@@ -7,10 +7,9 @@ import Cardwrap from '../components/cardwrap/Cardwrap';
 import { getPopularVideos, getVideos } from '../lib/video'
 
 import styles from '../styles/Home.module.css'
-import { startFetchMyQuery } from '../lib/db/hasura';
- 
+import { queryHasuraGQL } from '../lib/db/hasura';
+
 export async function getServerSideProps(){
-  
 
   const ytvideos = await  getVideos('disney trailer');
 
@@ -25,16 +24,7 @@ export async function getServerSideProps(){
 
 export default function Home({ytvideos , Travel ,Productivity , Popular}) {
  
-  startFetchMyQuery();
-
- const vsample = [
-   {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
-   {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
-   {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
-   {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
-   {imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},{imgUrl: '/static/wanda.jpg'},
- ]
-
+  queryHasuraGQL();
   return (
     <div className={styles.container}>
       <Head>
@@ -44,9 +34,7 @@ export default function Home({ytvideos , Travel ,Productivity , Popular}) {
       </Head>
 
       <div className={styles.main}>
-        <NavBar 
-           
-          /> 
+        <NavBar /> 
 
         <Banner 
            videoId="4zH5iYM4wJo"
@@ -54,17 +42,12 @@ export default function Home({ytvideos , Travel ,Productivity , Popular}) {
            subTitle="The god of mischief returns"
             imgUrl="./static/lok.jpg"/>
 
-         
-
         <div className={styles.sectionWrapper}>
-            <Cardwrap title="Disney + "  videos={vsample} size="large"/>
-
             <Cardwrap title="Productivity"  videos={Productivity} size="medium"/>
 
             <Cardwrap title="Travel"  videos={Travel} size="small"/>
 
             <Cardwrap title="Popular"  videos={Popular} size="large"/>
-
         </div>
       </div> 
          

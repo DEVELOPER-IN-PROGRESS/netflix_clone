@@ -11,7 +11,6 @@ const Cardwrap = (props) => {
      <div className={styles.cardWrapper}>
           { 
            videos.map( (vd, id) => {
-               console.log({vd}) ; 
             return ( 
              <Link href={`/video/${vd.id}`} passHref> 
                <a href={`/video/${vd.id}`}>
