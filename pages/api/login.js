@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { isNewUser } from "../../lib/db/hasura";
+import { isNewUser ,createNewUser } from "../../lib/db/hasura";
 import { magicAdmin } from "../../lib/magic";
 
 export default async function login(req, res){
@@ -11,8 +11,7 @@ export default async function login(req, res){
             const metadata = await magicAdmin.users.getMetadataByToken(didtoken) ;
 
             // if this key is present  we generate invalid Bearer token
-            delete metadata.oauthProvider
-
+            delete metadata.oauthProvider ;
             // generate jwt token
             const token = jwt.sign(
                   {   ...metadata ,
@@ -25,10 +24,15 @@ export default async function login(req, res){
                     }
                   },process.env.HASURA_JWT_SECRET
             );
-
                  const isNewUserQuery = await   isNewUser(metadata.issuer , token);
-
-            res.send({ done: true , isNewUserQuery })
+                 
+                 if(isNewUserQuery){
+                    // create new user
+                    const createNewUserMutation = await createNewUser(token , metadata );
+                    res.send({ done: true , msg: 'New User Detected and created ' })
+                 }else{
+                    res.send({ done: true , msg: 'Not A New User' })
+                 }
         }
         catch(err){
             res.status(500).send({ done: false })
