@@ -7,7 +7,6 @@ import Cardwrap from '../components/cardwrap/Cardwrap';
 import { getPopularVideos, getVideos } from '../lib/video'
 
 import styles from '../styles/Home.module.css'
-import { queryHasuraGQL } from '../lib/db/hasura';
 
 export async function getServerSideProps(){
 
@@ -23,8 +22,7 @@ export async function getServerSideProps(){
 }
 
 export default function Home({ytvideos , Travel ,Productivity , Popular}) {
- 
-  queryHasuraGQL();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -34,9 +32,9 @@ export default function Home({ytvideos , Travel ,Productivity , Popular}) {
       </Head>
 
       <div className={styles.main}>
-        <NavBar /> 
+        <NavBar />
 
-        <Banner 
+        <Banner
            videoId="4zH5iYM4wJo"
            title="Loki "
            subTitle="The god of mischief returns"
@@ -49,8 +47,8 @@ export default function Home({ytvideos , Travel ,Productivity , Popular}) {
 
             <Cardwrap title="Popular"  videos={Popular} size="large"/>
         </div>
-      </div> 
-         
+      </div>
+
    </div>
   )
 }
