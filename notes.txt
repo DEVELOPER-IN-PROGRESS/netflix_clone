@@ -1,10 +1,10 @@
-a _document.js must be created under pages/api/ directory to override the default styles 
+a _document.js must be created under pages/api/ directory to override the default styles
 
-google font icon for arrow 
+google font icon for arrow
 evnthough there is file based routing system in next there is a userouter hook which can take you from one page to another w
-without refreshing the entire page 
+without refreshing the entire page
 #Framer library for animation  which is built on top of react
-useRouter for route within a page 
+useRouter for route within a page
 
 useEffect ??
 react-modal .
@@ -16,8 +16,12 @@ read ISR Docs from NEXT revalidate
 
 Hasura DB for GraphQL
 
-custom permissions in hasura  so that a user cannot access other users information 
+custom permissions in hasura  so that a user cannot access other users information
 In the Hasura DB there is a public graphQl endpoint where there are admin and user roles . If there is no admin-secret id passed
-along in the header there should be some unnique key to identify each user which brings us to JWT  token authentication 
+along in the header there should be some unnique key to identify each user which brings us to JWT  token authentication
 
 we need to generate jwt tokens in place rather than using a website so we need to install a npm package
+
+in order to store the token as cookie we neeed a cookie npm package
+
+In the cookie.js  the cookie should be working in https protocol if not we can set it to false 

@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { setTokenCookie } from "../../lib/cookies";
 import { isNewUser ,createNewUser } from "../../lib/db/hasura";
 import { magicAdmin } from "../../lib/magic";
 
@@ -25,14 +26,11 @@ export default async function login(req, res){
                   },process.env.HASURA_JWT_SECRET
             );
                  const isNewUserQuery = await   isNewUser(metadata.issuer , token);
-                 
-                 if(isNewUserQuery){
-                    // create new user
-                    const createNewUserMutation = await createNewUser(token , metadata );
-                    res.send({ done: true , msg: 'New User Detected and created ' })
-                 }else{
-                    res.send({ done: true , msg: 'Not A New User' })
-                 }
+
+                 isNewUserQuery && (await createNewUser(token , metadata ));
+                 const cookie = setTokenCookie(token ,res);
+                 console.log({cookie}) ;
+                 res.send ({ done:true });
         }
         catch(err){
             res.status(500).send({ done: false })
