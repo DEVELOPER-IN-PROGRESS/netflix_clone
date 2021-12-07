@@ -12,11 +12,11 @@ const NavBar = () => {
     const [showDropdown , setShowDropdown] = useState(false);
     const [userName ,setUserName] = useState('')
 
-   useEffect( async() => {
+   useEffect( () => {
+     async function tokenGenerate() {
     try{
-      const {email , issuer } = await magic.user.getMetadata();
+      const {email} = await magic.user.getMetadata();
       const didToken = await magic.user.getIdToken();
-      console.log({didToken});
       if(email){
         setUserName(email);
       }
@@ -26,6 +26,8 @@ const NavBar = () => {
     }
      return () => {
      }
+   }
+      tokenGenerate();
    }, [])
 
     const handleOnClickHome = (e) => {
@@ -52,7 +54,7 @@ const NavBar = () => {
         e.preventDefault();
         try{
             await magic.user.logout();
-            console.log( await magic.user.isLoggedIn() );
+            //console.log( await magic.user.isLoggedIn() );
             router.push('/login');
         } catch(error){
           console.error("error logging out " , error);
@@ -64,7 +66,8 @@ const NavBar = () => {
     return (
         <div className={styles.container}>
           <div className={styles.wrapper}>
-            <a className={styles.logoLink} href="/">
+            <Link href="/" passHref>
+            <a className={styles.logoLink} >
               <div className={styles.logoWrapper}>
                 <Image
                   src="/static/netflix.svg"
@@ -74,6 +77,8 @@ const NavBar = () => {
                 />
               </div>
             </a>
+            </Link>
+
 
             <ul className={styles.navItems}>
               <li className={styles.navItem} onClick={handleOnClickHome}>
