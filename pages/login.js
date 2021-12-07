@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import styles from "../styles/Login.module.css";
 import { magic } from "../lib/magic-client";
+import Link from "next/link";
 
 const Login = () => {
 
@@ -91,6 +92,7 @@ const Login = () => {
 
         <header className={styles.header}>
           <div className={styles.headerWrapper}>
+            <Link href="/" passHref>
             <a className={styles.logoLink} href="/">
               <div className={styles.logoWrapper}>
                 <Image
@@ -101,6 +103,7 @@ const Login = () => {
                 />
               </div>
             </a>
+            </Link>
           </div>
         </header>
 

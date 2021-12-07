@@ -18,31 +18,31 @@ export async function getStaticPaths(){
 
   console.log({paths})
 
-  return { paths, fallback: "blocking" }; 
+  return { paths, fallback: "blocking" };
 }
 
 export async function getStaticProps(context) {
   console.log("context" , context )
 
 
-  const videoID = context.params.video; 
+  const videoID = context.params.video;
   const videoArray = await getYoutubeVideoById(videoID);
 
-  return { 
-    props:{ 
-      video: videoArray.length > 0 ? videoArray[0] : {}  , 
+  return {
+    props:{
+      video: videoArray.length > 0 ? videoArray[0] : {}  ,
     } ,
-    revalidate : 10  , // as in 10 seconds 
-  } ; 
+    revalidate : 10  , // as in 10 seconds
+  } ;
 
 }
 
 const Video = ({video}) => {
     const router = useRouter();
 
-     const { title , publishTime , description , channelTitle , statistics: { viewCount } = { viewCount : 0 } } = video ; 
+     const { title , publishTime , description , channelTitle , statistics: { viewCount } = { viewCount : 0 } } = video ;
 
-    return ( 
+    return (
           <div className={styles.container}>
             <NavBar />
             <Modal
@@ -51,8 +51,8 @@ const Video = ({video}) => {
               onRequestClose={() => { console.log("back"); router.back()}}
               className={styles.modal}
               overlayClassName={styles.overlay}
-             > 
-            
+             >
+
              <iframe
                 id="ytplayer"
                 className={styles.videoPlayer}
@@ -60,7 +60,7 @@ const Video = ({video}) => {
                 width="100%"
                 height="360"
                 src={`https://www.youtube.com/embed/${router.query.video}?autoplay=0&origin=http://example.com&controls=0&rel=1`}
-                frameborder="0"
+                frameBorder="0"
               ></iframe>
               <div className={styles.modalBody}>
                 <div className={styles.modalBodyContent}>
@@ -82,11 +82,11 @@ const Video = ({video}) => {
                 </div>
               </div>
               </Modal>
-             
+
             </div>
         );
 };
 
 
 
-export default Video ; 
+export default Video ;

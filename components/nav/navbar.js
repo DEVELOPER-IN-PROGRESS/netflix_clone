@@ -8,46 +8,43 @@ import styles from './navbar.module.css'
 import { magic } from "../../lib/magic-client";
 
 const NavBar = () => {
-    const router = useRouter(); 
+    const router = useRouter();
     const [showDropdown , setShowDropdown] = useState(false);
     const [userName ,setUserName] = useState('')
-      
+
    useEffect( async() => {
     try{
-      const {email , issuer } = await magic.user.getMetadata(); 
-      const didToken = await magic.user.getIdToken(); 
+      const {email , issuer } = await magic.user.getMetadata();
+      const didToken = await magic.user.getIdToken();
       console.log({didToken});
       if(email){
         setUserName(email);
       }
-      
+
     }catch(error){
       console.error({error})
-    }  
+    }
      return () => {
      }
    }, [])
 
-    
-
-
     const handleOnClickHome = (e) => {
         console.log('Home clicked') ;
         e.preventDefault();
-        router.push("/"); 
+        router.push("/");
     }
 
     const handleOnClickMyList = (e) => {
         console.log('My list clicked') ;
         e.preventDefault();
-        router.push("/browse/my-list"); 
+        router.push("/browse/my-list");
     }
 
     const handleShowDropdown = (e) => {
         console.log('Dropdown list clicked') ;
         e.preventDefault();
-        setShowDropdown(!showDropdown); 
-       
+        setShowDropdown(!showDropdown);
+
     }
 
     const handleSignout = async(e) => {
@@ -61,7 +58,7 @@ const NavBar = () => {
           console.error("error logging out " , error);
           router.push('/login');
         }
-        
+
     }
 
     return (
@@ -77,7 +74,7 @@ const NavBar = () => {
                 />
               </div>
             </a>
-    
+
             <ul className={styles.navItems}>
               <li className={styles.navItem} onClick={handleOnClickHome}>
                 Home
@@ -90,7 +87,7 @@ const NavBar = () => {
               <div>
                 <button className={styles.usernameBtn} onClick={handleShowDropdown}>
                   <p className={styles.username}>{userName}</p>
-                  
+
                   <Image
                     src={"/static/expand_more.svg"}
                     alt="Expand dropdown"
@@ -98,15 +95,15 @@ const NavBar = () => {
                     height="24px"
                   />
                 </button>
-    
-                { showDropdown && 
+
+                { showDropdown &&
                   <div className={styles.navDropdown}>
                     <div>
-                      
+
                       <a className={styles.linkName} onClick={handleSignout}>
                         Sign out
                       </a>
-                      
+
                       <div className={styles.lineWrapper}></div>
                     </div>
                   </div>
@@ -118,4 +115,4 @@ const NavBar = () => {
       );
 }
 
-export default NavBar ; 
+export default NavBar ;
