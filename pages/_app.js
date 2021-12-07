@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
     }
 }
     runLogin();
- },[]) ; 
+ },[router]) ;
 
  useEffect( () =>{
   const handleComplete = () => {
