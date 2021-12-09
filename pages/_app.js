@@ -7,18 +7,17 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [isLoading , setIsLoading] = useState(true);
-  useEffect( () => {
-    async function runLogin(){
-    const isLoggedIn = await magic.user.isLoggedIn()
-    if(isLoggedIn){
-      console.log({isLoggedIn});
-      router.push('/');
-    }else {
-      router.push('/login');
+
+    useEffect(async () => {
+    const isLoggedIn = await magic.user.isLoggedIn();
+    if (isLoggedIn) {
+      // route to /
+      router.push("/");
+    } else {
+      // route to /login
+      router.push("/login");
     }
-}
-    runLogin();
- },[router]) ;
+  }, []);
 
  useEffect( () =>{
   const handleComplete = () => {
