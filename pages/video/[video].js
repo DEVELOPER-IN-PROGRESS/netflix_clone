@@ -63,8 +63,21 @@ const Video = ({video}) => {
                 src={`https://www.youtube.com/embed/${router.query.video}?autoplay=0&origin=http://example.com&controls=0&rel=1`}
                 frameBorder="0"
               ></iframe>
-              <Like />
+
+            <div className={styles.likeDislikeBtnWrapper}>
+              <div className={styles.likeBtnWrapper}>
+              <div className={styles.btnWraper}>
+                <button>
+                  <Like />
+                  </button>
+              </div>
+              </div>
+              <div className={styles.btnWraper}>
+              <button>
               <DisLike/>
+              </button>
+              </div>
+             </div>
 
               <div className={styles.modalBody}>
                 <div className={styles.modalBodyContent}>
