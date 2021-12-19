@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import NavBar from "../../components/nav/navbar";
 import clsx from "clsx";
@@ -41,7 +42,29 @@ export async function getStaticProps(context) {
 const Video = ({video}) => {
     const router = useRouter();
 
-     const { title , publishTime , description , channelTitle , statistics: { viewCount } = { viewCount : 0 } } = video ;
+    const [toggleLike , setToggleLike ] = useState(false);
+    const [toggleDisLike , setToggleDisLike ] = useState(false);
+
+
+     const {
+              title ,
+              publishTime ,
+              description ,
+              channelTitle ,
+              statistics: { viewCount } = { viewCount : 0 }
+            } = video ;
+
+    const handleToggleLike = () => {
+      console.log('Liked');
+      setToggleLike(!toggleLike)
+      setToggleDisLike(toggleLike)
+    }
+
+    const handleToggleDislike = () => {
+      console.log('Dislike')
+      setToggleDisLike(!toggleDisLike)
+      setToggleLike(toggleDisLike)
+    }
 
     return (
           <div className={styles.container}>
@@ -64,20 +87,21 @@ const Video = ({video}) => {
                 frameBorder="0"
               ></iframe>
 
-            <div className={styles.likeDislikeBtnWrapper}>
-              <div className={styles.likeBtnWrapper}>
-              <div className={styles.btnWraper}>
-                <button>
-                  <Like />
-                  </button>
-              </div>
-              </div>
-              <div className={styles.btnWraper}>
-              <button>
-              <DisLike/>
-              </button>
-              </div>
-             </div>
+                <div className={styles.likeDislikeBtnWrapper}>
+                    <div className={styles.likeBtnWrapper}>
+                      <button onClick={handleToggleLike}>
+                        <div className={styles.btnWrapper}>
+                          <Like selected={toggleLike} />
+                        </div>
+                      </button>
+                    </div>
+                    <button onClick={handleToggleDislike} >
+                      <div className={styles.btnWrapper}>
+                        <DisLike selected={toggleDisLike} />
+                      </div>
+                    </button>
+                  </div>
+
 
               <div className={styles.modalBody}>
                 <div className={styles.modalBodyContent}>
