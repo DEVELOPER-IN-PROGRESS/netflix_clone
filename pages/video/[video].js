@@ -10,7 +10,6 @@ import DisLike from "../../components/icons/dislike-icon";
 
 Modal.setAppElement('#__next');
 
-
 export async function getStaticPaths(){
   const listOfVideos = ['vXzuFprlyrw' ,'rt-2cxAiPJk' ,  '5VYb3B1ETlk' , 'ChOhcHD8fBA' , 'x9D0uUKJ5KI' ] ;
 
@@ -54,17 +53,34 @@ const Video = ({video}) => {
               statistics: { viewCount } = { viewCount : 0 }
             } = video ;
 
-    const handleToggleLike = () => {
-      console.log('Liked');
-      setToggleLike(!toggleLike)
-      setToggleDisLike(toggleLike)
-    }
+    const handleToggleLike = async () => {
+      const val = !toggleLike;
+      setToggleLike(val)
+      setToggleDisLike(toggleLike);
+
+      const favourited = val ? 1 : 0;
+    const response = await runRatingService(favourited);
+    } ;
 
     const handleToggleDislike = () => {
       console.log('Dislike')
       setToggleDisLike(!toggleDisLike)
       setToggleLike(toggleDisLike)
     }
+
+    const runRatingService = async (favourited) => {
+      return await fetch("/api/stats", {
+        method: "POST",
+        body: JSON.stringify({
+          videoId,
+          favourited,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    };
+
 
     return (
           <div className={styles.container}>
